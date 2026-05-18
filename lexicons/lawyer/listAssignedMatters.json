@@ -1,0 +1,51 @@
+{
+  "lexicon": 1,
+  "id": "ai.gftd.apps.lawyer.listAssignedMatters",
+  "defs": {
+    "main": {
+      "type": "query",
+      "description": "List matters where this lawyer is lead or co-counsel.",
+      "parameters": {
+        "type": "params",
+        "properties": {
+          "firmDid": { "type": "string" },
+          "lawyerDid": { "type": "string" },
+          "status": { "type": "string", "description": "Filter by matter status: active|pending_pwc|filed|hearing|closed" },
+          "role": { "type": "string", "description": "lead|coCounsel|any" },
+          "limit": { "type": "integer", "default": 50 },
+          "offset": { "type": "integer", "default": 0 }
+        },
+        "required": ["firmDid", "lawyerDid"]
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "matters": { "type": "array", "items": { "type": "ref", "ref": "#matterSummary" } },
+            "total": { "type": "integer" },
+            "offset": { "type": "integer" },
+            "limit": { "type": "integer" }
+          },
+          "required": ["matters", "total", "offset", "limit"]
+        }
+      }
+    },
+    "matterSummary": {
+      "type": "object",
+      "properties": {
+        "matterId": { "type": "string" },
+        "matterUri": { "type": "string" },
+        "matterType": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "status": { "type": "string" },
+        "role": { "type": "string", "description": "lead|coCounsel" },
+        "clientDid": { "type": "string" },
+        "openedAt": { "type": "string" },
+        "pendingHearings": { "type": "integer" },
+        "openDocuments": { "type": "integer" }
+      },
+      "required": ["matterId", "matterUri", "matterType", "status", "role"]
+    }
+  }
+}

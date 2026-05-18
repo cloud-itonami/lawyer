@@ -1,0 +1,36 @@
+{
+  "name": "magatama-334bbd5f",
+  "main": "svelte/.svelte-kit/cloudflare/_worker.js",
+  "compatibility_date": "2025-03-17",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "vars": {
+    "APP_NANOID": "334bbd5f",
+    "APP_DISPLAY_NAME": "Gftd Lawyer",
+    "APP_DESCRIPTION": "Gftd Japan 専属 law firm — ADR-0029 recursive did:gftd, lawfirm.gftd.ai lexicon 共有。",
+    "APP_FRAMEWORK": "sveltekit-edge-bff",
+    "APP_PERFORMER_TYPE": "service",
+    "APP_UI_TYPE": "appview",
+    "APP_EMBED_URL": "https://334bbd5f.gftd.ai/?embed=1",
+    "APP_CAPABILITIES": "[\"bpmn-dispatch\",\"lawfirm-lexicon-delegation\",\"matter-management\",\"external-counsel-consent\",\"document-vault\",\"hearing-scheduling\",\"case-closure\",\"conflict-scan\",\"recursive-did-minting\"]",
+    "FIRM_DID_HINT": "did:web:lawyer.gftd.ai",
+    "AGENTGATEWAY_MCP_ROUTER_URL": "https://mcp.gftd.ai/xrpc/ai.gftd.mcp.message"
+  },
+  "routes": [
+    {
+      "pattern": "334bbd5f.gftd.ai/*",
+      "zone_name": "gftd.ai"
+    },
+    {
+      "pattern": "lawyer.gftd.ai/*",
+      "zone_name": "gftd.ai"
+    }
+  ],
+  "assets": {
+    "directory": "./svelte/.svelte-kit/cloudflare/client",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}

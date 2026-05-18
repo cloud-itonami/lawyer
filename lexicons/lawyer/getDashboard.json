@@ -1,0 +1,68 @@
+{
+  "lexicon": 1,
+  "id": "ai.gftd.apps.lawyer.getDashboard",
+  "defs": {
+    "main": {
+      "type": "query",
+      "description": "Get lawyer dashboard snapshot: active matters, pending grants, upcoming hearings, recent time entries.",
+      "parameters": {
+        "type": "params",
+        "properties": {
+          "lawyerDid": { "type": "string" },
+          "firmDid": { "type": "string" }
+        },
+        "required": ["lawyerDid"]
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "lawyerDid": { "type": "string" },
+            "activeMatters": { "type": "integer" },
+            "pendingGrants": { "type": "integer" },
+            "upcomingHearings": { "type": "integer" },
+            "unbilledHours": { "type": "integer", "description": "Unbilled time in minutes" },
+            "recentMatters": { "type": "array", "items": { "type": "ref", "ref": "#matterCard" } },
+            "pendingGrantList": { "type": "array", "items": { "type": "ref", "ref": "#grantCard" } },
+            "hearingList": { "type": "array", "items": { "type": "ref", "ref": "#hearingCard" } }
+          },
+          "required": ["lawyerDid", "activeMatters", "pendingGrants", "upcomingHearings", "unbilledHours"]
+        }
+      }
+    },
+    "matterCard": {
+      "type": "object",
+      "properties": {
+        "matterId": { "type": "string" },
+        "matterType": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "status": { "type": "string" },
+        "role": { "type": "string" }
+      },
+      "required": ["matterId", "matterType", "status", "role"]
+    },
+    "grantCard": {
+      "type": "object",
+      "properties": {
+        "grantDid": { "type": "string" },
+        "matterType": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "role": { "type": "string" },
+        "expiresAt": { "type": "string" }
+      },
+      "required": ["grantDid", "matterType", "role"]
+    },
+    "hearingCard": {
+      "type": "object",
+      "properties": {
+        "hearingId": { "type": "string" },
+        "matterId": { "type": "string" },
+        "scheduledAt": { "type": "string" },
+        "courtName": { "type": "string" },
+        "hearingType": { "type": "string" }
+      },
+      "required": ["hearingId", "matterId", "scheduledAt"]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "lexicon": 1,
+  "id": "ai.gftd.apps.lawyer.logWorkNote",
+  "defs": {
+    "main": {
+      "type": "procedure",
+      "description": "Log a work note (attorney notes, research memo, client communication summary) for a matter. Stored encrypted (signal:v1:).",
+      "input": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "lawyerDid": { "type": "string" },
+            "firmDid": { "type": "string" },
+            "matterId": { "type": "string" },
+            "noteType": { "type": "string", "description": "research|client-comm|court-filing|strategy|general" },
+            "content": { "type": "string", "description": "Note content (will be field-encrypted)" },
+            "billableMinutes": { "type": "integer", "description": "Billable time for this note activity" },
+            "tags": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": ["lawyerDid", "firmDid", "matterId", "noteType", "content"]
+        }
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ok": { "type": "boolean" },
+            "noteId": { "type": "string" },
+            "noteUri": { "type": "string" },
+            "timeEntryUri": { "type": "string" }
+          },
+          "required": ["ok", "noteId", "noteUri"]
+        }
+      }
+    }
+  }
+}

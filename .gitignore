@@ -1,0 +1,9 @@
+node_modules/
+svelte/build/
+svelte/.svelte-kit/
+*.pyc
+__pycache__/
+.env
+.env.local
+dist/
+.wrangler/

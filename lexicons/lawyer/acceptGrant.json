@@ -1,0 +1,36 @@
+{
+  "lexicon": 1,
+  "id": "ai.gftd.apps.lawyer.acceptGrant",
+  "defs": {
+    "main": {
+      "type": "procedure",
+      "description": "Accept an externalCounselGrant invitation. Changes grant status to accepted and opens matter workspace access.",
+      "input": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "grantDid": { "type": "string" },
+            "lawyerDid": { "type": "string" },
+            "acceptanceNote": { "type": "string", "description": "Optional acceptance note / conflict declaration" }
+          },
+          "required": ["grantDid", "lawyerDid"]
+        }
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ok": { "type": "boolean" },
+            "grantDid": { "type": "string" },
+            "matterDid": { "type": "string" },
+            "status": { "type": "string" },
+            "workspaceUri": { "type": "string" }
+          },
+          "required": ["ok", "grantDid", "matterDid", "status"]
+        }
+      }
+    }
+  }
+}

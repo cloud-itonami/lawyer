@@ -1,0 +1,50 @@
+{
+  "lexicon": 1,
+  "id": "ai.gftd.apps.lawyer.listPendingGrants",
+  "defs": {
+    "main": {
+      "type": "query",
+      "description": "List externalCounselGrant records awaiting acceptance by this lawyer.",
+      "parameters": {
+        "type": "params",
+        "properties": {
+          "lawyerDid": { "type": "string" },
+          "status": { "type": "string", "default": "invited", "description": "invited|accepted|revoked|expired" },
+          "limit": { "type": "integer", "default": 50 },
+          "offset": { "type": "integer", "default": 0 }
+        },
+        "required": ["lawyerDid"]
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "grants": { "type": "array", "items": { "type": "ref", "ref": "#grantItem" } },
+            "total": { "type": "integer" },
+            "offset": { "type": "integer" },
+            "limit": { "type": "integer" }
+          },
+          "required": ["grants", "total", "offset", "limit"]
+        }
+      }
+    },
+    "grantItem": {
+      "type": "object",
+      "properties": {
+        "grantDid": { "type": "string" },
+        "grantUri": { "type": "string" },
+        "matterDid": { "type": "string" },
+        "matterType": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "role": { "type": "string" },
+        "capabilities": { "type": "array", "items": { "type": "string" } },
+        "grantingFirmDid": { "type": "string" },
+        "expiresAt": { "type": "string" },
+        "autoRouted": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["grantDid", "matterDid", "role", "capabilities", "grantingFirmDid"]
+    }
+  }
+}

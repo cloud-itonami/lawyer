@@ -1,0 +1,43 @@
+{
+  "lexicon": 1,
+  "id": "ai.gftd.apps.lawyer.submitDocumentDraft",
+  "defs": {
+    "main": {
+      "type": "procedure",
+      "description": "Submit an AI-generated document draft for ISCO-2611 lawyer review. Status transitions: draft → under_review → approved | rejected.",
+      "input": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "lawyerDid": { "type": "string" },
+            "firmDid": { "type": "string" },
+            "matterId": { "type": "string" },
+            "documentType": { "type": "string", "description": "vakalatnama|notice|reply|petition|affidavit|brief|contract|motion" },
+            "titleHint": { "type": "string" },
+            "contentPrompt": { "type": "string", "description": "Instruction to AI for draft generation" },
+            "jurisdiction": { "type": "string" },
+            "reviewerDid": { "type": "string", "description": "Designated ISCO-2611 reviewer DID" }
+          },
+          "required": ["lawyerDid", "firmDid", "matterId", "documentType", "contentPrompt"]
+        }
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ok": { "type": "boolean" },
+            "draftId": { "type": "string" },
+            "draftUri": { "type": "string" },
+            "status": { "type": "string" },
+            "reviewerDid": { "type": "string" },
+            "generatedContent": { "type": "string", "description": "AI-generated draft text" },
+            "langserverRunId": { "type": "string" }
+          },
+          "required": ["ok", "draftId", "draftUri", "status"]
+        }
+      }
+    }
+  }
+}

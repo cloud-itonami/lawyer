@@ -1,0 +1,130 @@
+{
+  "@context": "https://gftd.ai/ns/magatama/v1",
+  "@id": "did:web:lawyer.gftd.ai",
+  "name": "334bbd5f",
+  "nanoid": "334bbd5f",
+  "performerType": "service",
+  "runtimeType": "worker",
+  "project": "lawyer",
+  "component": {
+    "build": {
+      "command": "pnpm typecheck",
+      "entrypoint": "src/app.ts"
+    },
+    "env": {
+      "DISPATCHER_URL": "https://dispatcher.gftd.ai",
+      "FIRM_DID_HINT": "did:web:lawyer.gftd.ai"
+    },
+    "framework": "ts-thin-edge",
+    "path": "src/app.ts"
+  },
+  "convoSystemPrompt": "You are the Gftd Lawyer attorney portal agent for firmDid=did:web:lawyer.gftd.ai. You help bengoshi (attorneys) manage their assigned matters, review and accept co-counsel grants, log work notes, and generate AI document drafts. Available commands: ai.gftd.apps.lawyer.getDashboard (dashboard snapshot), ai.gftd.apps.lawyer.listAssignedMatters (filter by status/role), ai.gftd.apps.lawyer.listPendingGrants (co-counsel invitations), ai.gftd.apps.lawyer.acceptGrant (accept a grant with optional note), ai.gftd.apps.lawyer.logWorkNote (time + encrypted note on a matter), ai.gftd.apps.lawyer.submitDocumentDraft (AI-generate vakalatnama/notice/reply/petition/affidavit/brief — ISCO-2611 review gate required before use). Shared lawfirm commands: ai.gftd.apps.lawfirm.recordTimeEntry, ai.gftd.apps.lawfirm.listInvoices. Every matter, hearing, document, and consent grant is a recursive did:gftd child of firmDid=did:gftd:{h_lawyer} (ADR-0029). Ethical walls enforced via hash prefix; grants scoped to matter X cryptographically cannot be replayed on matter Y. ISCO-2611 lawyer approval required before filing AI-generated drafts. Cite matterDid/grantDid when discussing cases.",
+  "governance": {
+    "raci": "responsible",
+    "classification": "confidential",
+    "complianceFrameworks": ["attorney-client-privilege", "appi", "iso-2611"]
+  },
+  "profile": {
+    "displayName": "Gftd Lawyer",
+    "description": "Gftd Japan 専属 law firm — ADR-0029 recursive did:gftd identity、lawfirm.gftd.ai lexicon 共有、JP jurisdiction focus。",
+    "avatar": "⚖️",
+    "category": "legal",
+    "country": "jpn",
+    "isBot": true,
+    "operator": "gftd.co.jp",
+    "agentType": "semi-autonomous",
+    "capabilities": [
+      "bpmn-dispatch",
+      "lawfirm-lexicon-delegation",
+      "matter-management",
+      "external-counsel-consent",
+      "document-vault",
+      "hearing-scheduling",
+      "case-closure",
+      "conflict-scan",
+      "recursive-did-minting",
+      "lawyer-dashboard",
+      "grant-acceptance",
+      "work-note-logging",
+      "ai-document-drafting",
+      "isco-2611-review-gate"
+    ]
+  },
+  "triggers": {
+    "subscribeRepos": {
+      "collections": [
+        "app.bsky.feed.post",
+        "app.bsky.feed.like",
+        "ai.gftd.apps.lawfirm.matter",
+        "ai.gftd.apps.lawfirm.hearing",
+        "ai.gftd.apps.lawfirm.legalDocument",
+        "ai.gftd.apps.lawfirm.activity",
+        "ai.gftd.apps.lawfirm.engagement",
+        "ai.gftd.apps.lawfirm.externalCounselGrant",
+        "ai.gftd.apps.lawfirm.timeEntry",
+        "ai.gftd.apps.lawfirm.invoice",
+        "ai.gftd.apps.saiban.jiken",
+        "ai.gftd.apps.saiban.trialEvent"
+      ]
+    }
+  },
+  "derive": {
+    "rules": [
+      {
+        "id": "matter-opened-social",
+        "on": { "collection": "ai.gftd.apps.lawfirm.matter", "action": "create" },
+        "emit": {
+          "type": "app.bsky.feed.post",
+          "text": "Matter opened: {{record.matterNumber}} — {{record.matterType}} ({{record.jurisdiction}})",
+          "visibility": "firm"
+        }
+      },
+      {
+        "id": "hearing-cron",
+        "on": { "collection": "ai.gftd.apps.lawfirm.hearing", "action": "create" },
+        "emit": {
+          "type": "scheduler.registerCron",
+          "fireAt": "{{record.scheduledAt - PT24H}}",
+          "action": "notify matter members of upcoming hearing"
+        }
+      },
+      {
+        "id": "external-counsel-invite-dm",
+        "on": { "collection": "ai.gftd.apps.lawfirm.externalCounselGrant", "action": "create" },
+        "emit": {
+          "type": "wproto.convo.createDm",
+          "peerDID": "{{record.granteeDid}}",
+          "kind": "consent.request",
+          "payload": {
+            "grantDid": "{{record.grantDid}}",
+            "matterDid": "{{record.matterDid}}",
+            "capabilities": "{{record.capabilities}}",
+            "expiresAt": "{{record.expiresAt}}"
+          }
+        }
+      },
+      {
+        "id": "grant-accepted-notify",
+        "on": { "collection": "ai.gftd.apps.lawfirm.externalCounselGrant", "action": "create" },
+        "filter": { "field": "granteeHandle", "value": "k.bakshi" },
+        "emit": {
+          "type": "app.bsky.feed.post",
+          "text": "New co-counsel grant received: {{record.matterType}} in {{record.role}}",
+          "visibility": "firm"
+        }
+      }
+    ]
+  },
+  "space": {
+    "name": "Gftd Lawyer",
+    "description": "gftdcojp 専属 firm の matter/hearing/document collaboration space",
+    "joinRule": "invite",
+    "historyVisibility": "firm-only",
+    "convos": [
+      { "name": "lawyer-matters", "kind": "firm", "description": "Active matter board", "default": true },
+      { "name": "lawyer-hearings", "kind": "firm", "description": "Upcoming court events" },
+      { "name": "lawyer-docs-review", "kind": "firm", "description": "ISCO-2611 review queue for AI drafts" },
+      { "name": "lawyer-peer-firms", "kind": "private", "description": "External counsel / peer firm threads (matter-scoped)" }
+    ]
+  }
+}

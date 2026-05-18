@@ -1,0 +1,12 @@
+{
+  "name": "ai-gftd-wasm-lawyer-334bbd5f",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/app.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}
