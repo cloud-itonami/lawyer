@@ -14,8 +14,7 @@
     "APP_UI_TYPE": "appview",
     "APP_EMBED_URL": "https://334bbd5f.gftd.ai/?embed=1",
     "APP_CAPABILITIES": "[\"bpmn-dispatch\",\"lawfirm-lexicon-delegation\",\"matter-management\",\"external-counsel-consent\",\"document-vault\",\"hearing-scheduling\",\"case-closure\",\"conflict-scan\",\"recursive-did-minting\"]",
-    "FIRM_DID_HINT": "did:web:lawyer.gftd.ai",
-    "AGENTGATEWAY_MCP_ROUTER_URL": "https://mcp.gftd.ai/xrpc/ai.gftd.mcp.message"
+    "FIRM_DID_HINT": "did:web:lawyer.gftd.ai"
   },
   "routes": [
     {

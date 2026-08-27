@@ -12,7 +12,6 @@
       "entrypoint": "src/app.ts"
     },
     "env": {
-      "DISPATCHER_URL": "https://dispatcher.gftd.ai",
       "FIRM_DID_HINT": "did:web:lawyer.gftd.ai"
     },
     "framework": "ts-thin-edge",

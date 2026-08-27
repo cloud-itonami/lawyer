@@ -1,19 +1,17 @@
 import { json, type RequestEvent } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-const DEFAULT_MCP_ROUTER_URL = 'https://mcp.gftd.ai/xrpc/ai.gftd.mcp.message';
-
 type Env = Record<string, unknown> & { AGENTGATEWAY_MCP_ROUTER_URL?: string; MCP_ROUTER_URL?: string };
 
 function envOf(event: RequestEvent): Env { return ((event.platform as { env?: Env } | undefined)?.env ?? {}) as Env; }
 
-function mcpRouterUrl(env: Env): string {
+function mcpRouterUrl(env: Env): string | null {
   const configured = typeof env.AGENTGATEWAY_MCP_ROUTER_URL === 'string' && env.AGENTGATEWAY_MCP_ROUTER_URL.trim()
     ? env.AGENTGATEWAY_MCP_ROUTER_URL
     : typeof env.MCP_ROUTER_URL === 'string' && env.MCP_ROUTER_URL.trim()
       ? env.MCP_ROUTER_URL
-      : DEFAULT_MCP_ROUTER_URL;
-  return configured.replace(/\/+$/, '');
+      : null;
+  return configured?.replace(/\/+$/, '') ?? null;
 }
 
 function noStore(body: unknown, init: ResponseInit = {}): Response {
@@ -25,13 +23,15 @@ function noStore(body: unknown, init: ResponseInit = {}): Response {
 export const POST: RequestHandler = async (event) => {
   const nsid = event.params.path;
   if (!nsid) return noStore({ error: 'Missing XRPC method' }, { status: 400 });
+  const routerUrl = mcpRouterUrl(envOf(event));
+  if (!routerUrl) return noStore({ error: 'MCP router not configured' }, { status: 503 });
   const input = await event.request.json().catch(() => ({}));
   const headers = new Headers(event.request.headers);
   headers.delete('host');
   headers.set('content-type', 'application/json');
   headers.set('x-gftd-bff', 'sveltekit-edge-bff');
   headers.set('x-gftd-xrpc-method', nsid);
-  const upstream = await fetch(mcpRouterUrl(envOf(event)), {
+  const upstream = await fetch(routerUrl, {
     method: 'POST',
     headers,
     body: JSON.stringify({ jsonrpc: '2.0', id: crypto.randomUUID(), method: 'tools/call', params: { name: nsid, arguments: input } })
