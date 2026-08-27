@@ -91,7 +91,9 @@ async function bodyWithQuery(
 }
 
 async function proxyToDispatcher(env: Env, nsid: string, body: Record<string, unknown>): Promise<Response> {
-  const base = (env.DISPATCHER_URL ?? "https://dispatcher.gftd.ai").replace(/\/+$/, "");
+  const configured = env.DISPATCHER_URL?.trim();
+  if (!configured) return json({ error: "dispatcher not configured" }, 503);
+  const base = configured.replace(/\/+$/, "");
   const headers: Record<string, string> = { "content-type": "application/json" };
   const trust = await internalTrustSecret(env);
   if (trust) headers["x-internal-trust"] = trust;
