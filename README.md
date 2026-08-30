@@ -1,4 +1,4 @@
-# lawyer.gftd.ai
+# Attorney-facing portal
 
 Attorney-facing portal — matter workspace, grant acceptance, AI document drafting, time logging.
 
@@ -87,5 +87,5 @@ would catch a behavioural regression.
 
 ## Related
 
-- [lawfirm.gftd.ai](https://github.com/gftdcojp/lawfirm) — client-facing portal
+- [lawfirm](https://github.com/cloud-itonami/lawfirm) — client-facing portal
 - ADR-2605180600: Attorney Portal Design

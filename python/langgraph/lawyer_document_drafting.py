@@ -1,5 +1,5 @@
 """
-lawyer.gftd.ai document drafting LangGraph — AI draft + ISCO-2611 approval gate.
+Attorney portal document drafting LangGraph — AI draft + ISCO-2611 approval gate.
 
 Topology:
   START

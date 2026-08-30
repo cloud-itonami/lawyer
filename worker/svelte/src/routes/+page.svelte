@@ -66,7 +66,7 @@
   }
 </script>
 
-<svelte:head><title>Dashboard — Gftd Lawyer</title></svelte:head>
+<svelte:head><title>Dashboard — Attorney portal</title></svelte:head>
 
 <div class="page">
   <header class="page-header">
