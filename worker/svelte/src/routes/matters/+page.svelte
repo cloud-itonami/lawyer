@@ -28,28 +28,28 @@
   const DEMO_MATTERS: Matter[] = [
     {
       matterId: 'matter-001',
-      matterNumber: 'GFT-2026-001',
+      matterNumber: 'MAT-2026-001',
       matterType: 'ni138',
       jurisdiction: 'IN-MH',
       status: 'active',
       role: 'coCounsel',
       openedAt: '2026-03-01T00:00:00Z',
-      clientName: 'Gftd Japan K.K.',
+      clientName: 'Example Client K.K.',
       counterpartyName: 'Kagoshima University',
     },
     {
       matterId: 'matter-002',
-      matterNumber: 'GFT-2026-002',
+      matterNumber: 'MAT-2026-002',
       matterType: 'civil',
       jurisdiction: 'IN-DL',
       status: 'filed',
       role: 'lead',
       openedAt: '2026-04-15T00:00:00Z',
-      clientName: 'Gftd Japan K.K.',
+      clientName: 'Example Client K.K.',
     },
     {
       matterId: 'matter-003',
-      matterNumber: 'GFT-2026-003',
+      matterNumber: 'MAT-2026-003',
       matterType: 'arbitration',
       jurisdiction: 'IN-MH',
       status: 'hearing',
@@ -107,7 +107,7 @@
   }
 </script>
 
-<svelte:head><title>Matters — Gftd Lawyer</title></svelte:head>
+<svelte:head><title>Matters — Attorney portal</title></svelte:head>
 
 <div class="page">
   <header class="page-header">

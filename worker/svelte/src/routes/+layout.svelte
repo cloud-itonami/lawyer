@@ -17,7 +17,7 @@
     <div class="logo">
       <span class="icon">⚖️</span>
       <div>
-        <p class="name">Gftd Lawyer</p>
+        <p class="name">Attorney portal</p>
         <p class="did">{FIRM_DID}</p>
       </div>
     </div>

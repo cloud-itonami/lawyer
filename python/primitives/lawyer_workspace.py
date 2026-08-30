@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 """
-lawyer.gftd.ai workspace primitives — LangServer handlers.
+Attorney portal workspace primitives — LangServer handlers.
 
 Task types:
   lawyer.dashboard.get        Fetch lawyer dashboard snapshot
@@ -409,7 +409,7 @@ async def task_lawyer_grant_accept(
         "grantDid":     grant_did,
         "matterDid":    case_uri,
         "status":       "accepted",
-        "workspaceUri": f"https://lawyer.gftd.ai/matters/{matter_id_for_url}",
+        "workspaceUri": f"/matters/{matter_id_for_url}",
         "noteUri":      note_uri,
     }
 

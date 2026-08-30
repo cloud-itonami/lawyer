@@ -36,7 +36,7 @@
       capabilities: ['read', 'comment', 'uploadDocument'],
       expiresAt: '2026-08-18T00:00:00Z',
       grantingFirmDid: 'did:web:lawfirm.gftd.ai',
-      grantingFirmName: 'Gftd Lawfirm',
+      grantingFirmName: 'Example Law Firm',
       status: 'invited',
     },
     {
@@ -61,7 +61,7 @@
       capabilities: ['read', 'comment'],
       expiresAt: '2027-01-01T00:00:00Z',
       grantingFirmDid: 'did:web:lawfirm.gftd.ai',
-      grantingFirmName: 'Gftd Lawfirm',
+      grantingFirmName: 'Example Law Firm',
       status: 'accepted',
       acceptedAt: '2026-04-01T09:30:00Z',
     },
@@ -127,7 +127,7 @@
   }
 </script>
 
-<svelte:head><title>Grants — Gftd Lawyer</title></svelte:head>
+<svelte:head><title>Grants — Attorney portal</title></svelte:head>
 
 <div class="page">
   <header class="page-header">

@@ -1,4 +1,4 @@
-# Operator quickstart — lawyer.gftd.ai
+# Operator quickstart — attorney portal
 
 Every command below was executed verbatim on 2026-08-19 and the observed output is
 recorded next to it. Steps that **do not work** are recorded as such rather than

@@ -153,7 +153,7 @@
   }
 </script>
 
-<svelte:head><title>Drafts — Gftd Lawyer</title></svelte:head>
+<svelte:head><title>Drafts — Attorney portal</title></svelte:head>
 
 <div class="page">
   <header class="page-header">
@@ -189,7 +189,7 @@
 
         <div class="field">
           <label for="title-hint">Title Hint (optional)</label>
-          <input id="title-hint" type="text" placeholder="e.g. Vakalatnama for Gftd Japan K.K." bind:value={formTitleHint} />
+          <input id="title-hint" type="text" placeholder="e.g. Vakalatnama for the client" bind:value={formTitleHint} />
         </div>
 
         <div class="field">

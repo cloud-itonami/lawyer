@@ -1,5 +1,5 @@
 """
-lawyer.gftd.ai matter workspace LangGraph — Supervisor + specialist agents.
+Attorney portal matter workspace LangGraph — Supervisor + specialist agents.
 
 Topology:
   START → supervisor →
@@ -108,7 +108,7 @@ _KEYWORD_ROUTING: list[tuple[list[str], str]] = [
     (["time", "billing", "hours", "unbilled", "entry"], "time_entry"),
 ]
 
-_SUPERVISOR_SYSTEM = """You are the routing supervisor for the lawyer.gftd.ai workspace.
+_SUPERVISOR_SYSTEM = """You are the routing supervisor for the attorney portal workspace.
 Classify the user's task into one of:
   matters     — viewing or searching assigned matters/cases
   grants      — external counsel grant invitations

@@ -1,4 +1,4 @@
-# Python — lawyer.gftd.ai
+# Python — attorney portal
 
 ## Task Handlers (pyzeebe)
 

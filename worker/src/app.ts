@@ -1,4 +1,4 @@
-// lawyer.gftd.ai thin edge facade.
+// Attorney portal thin edge facade.
 // Lawyer-specific operations: ai.gftd.apps.lawyer.*
 // Shared lawfirm operations (firmDid=did:web:lawyer.gftd.ai): ai.gftd.apps.lawfirm.*
 // All business logic runs in LangServer pods via dispatcher.
@@ -31,7 +31,7 @@ export default {
       return json({
         ok: true,
         nanoid: env.APP_NANOID ?? "334bbd5f",
-        handle: "lawyer.gftd.ai",
+        handle: "lawyer",
         tenant: "gftdcojp",
         firmDid,
         lawyerDid,

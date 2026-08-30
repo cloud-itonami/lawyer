@@ -7,12 +7,11 @@
   ],
   "vars": {
     "APP_NANOID": "334bbd5f",
-    "APP_DISPLAY_NAME": "Gftd Lawyer",
-    "APP_DESCRIPTION": "Gftd Japan 専属 law firm — ADR-0029 recursive did:gftd, lawfirm.gftd.ai lexicon 共有。",
+    "APP_DISPLAY_NAME": "Attorney portal",
+    "APP_DESCRIPTION": "Attorney-facing portal — workspace, AI drafting, ISCO-2611 gate.",
     "APP_FRAMEWORK": "sveltekit-edge-bff",
     "APP_PERFORMER_TYPE": "service",
     "APP_UI_TYPE": "appview",
-    "APP_EMBED_URL": "https://334bbd5f.gftd.ai/?embed=1",
     "APP_CAPABILITIES": "[\"bpmn-dispatch\",\"lawfirm-lexicon-delegation\",\"matter-management\",\"external-counsel-consent\",\"document-vault\",\"hearing-scheduling\",\"case-closure\",\"conflict-scan\",\"recursive-did-minting\"]",
     "FIRM_DID_HINT": "did:web:lawyer.gftd.ai"
   },

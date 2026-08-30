@@ -1,4 +1,4 @@
-name: Deploy lawyer.gftd.ai
+name: Deploy attorney portal
 
 on:
   push:

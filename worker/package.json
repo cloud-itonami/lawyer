@@ -1,5 +1,5 @@
 {
-  "name": "ai-gftd-wasm-lawyer-334bbd5f",
+  "name": "lawyer-334bbd5f",
   "version": "1.0.0",
   "type": "module",
   "main": "src/app.ts",
