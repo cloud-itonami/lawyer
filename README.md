@@ -30,6 +30,18 @@ Both blocks exit 0 on node 26 / pnpm 10. `pnpm build` writes
 `build/` directory. `npx wrangler dev` is the intended local run but was not
 verifiable on the measuring workstation — the quickstart records why.
 
+```bash
+nbb test/xrpc_contract_test.cljs   # needs nothing installed; reads the repo only
+```
+
+This one checks what neither `tsc` nor `svelte-check` can see: the lexicons are
+the NSID contract, and the deployed route, the views, `worker/src/app.ts` and
+the table below each restate part of it in a different file and a different
+language. It exits `0` green, `1` naming the invariant that broke, and `2` when
+an input could not be read — so "could not measure" never reads as "measured
+clean". `scripts/maturity-loop/mutations.edn` in the superproject holds seven
+mutations that must make it red.
+
 The LangGraph graphs load by file path once `langgraph` is installed in a
 virtualenv; the quickstart has the exact loader and the verified node lists. No
 credentials are needed to compile them.
