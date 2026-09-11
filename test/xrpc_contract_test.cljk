@@ -1,5 +1,5 @@
 #!/usr/bin/env nbb
-;; test/xrpc_contract_test.cljs — do the lexicons, the deployed route, the views
+;; test/xrpc_contract_test.cljk — do the lexicons, the deployed route, the views
 ;; and the README still agree about this app's XRPC surface?
 ;;
 ;; The README calls `lexicons/lawyer/` the "NSID contract SSoT". Four other
@@ -40,7 +40,7 @@
 ;; as a clean one and print OK (CLAUDE.md: 入力が無いとき何を返すか。pass なら
 ;; それが欠陥).
 ;;
-;; Usage:  nbb test/xrpc_contract_test.cljs
+;; Usage:  nbb test/xrpc_contract_test.cljk
 
 (ns xrpc-contract-test
   (:require ["node:fs" :as fs]
@@ -48,7 +48,7 @@
             [clojure.string :as str]))
 
 (def root
-  (path/resolve (path/dirname (or js/__filename "test/xrpc_contract_test.cljs")) ".."))
+  (path/resolve (path/dirname (or js/__filename "test/xrpc_contract_test.cljk")) ".."))
 
 (defn- abs [rel] (path/join root rel))
 (defn- slurp* [rel]
