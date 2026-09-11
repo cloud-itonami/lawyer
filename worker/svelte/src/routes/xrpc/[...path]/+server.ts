@@ -64,7 +64,7 @@ async function forward(event: RequestEvent, input: unknown): Promise<Response> {
  * Without this export SvelteKit answers 405 before any of the code above runs.
  * The views wrap their call in a `catch` that substitutes demo data, so the
  * page then renders fabricated matters and grants with nothing on screen to
- * say so. `test/xrpc_contract_test.cljs` pins the lexicon-type -> method
+ * say so. `test/xrpc_contract_test.cljk` pins the lexicon-type -> method
  * binding for that reason.
  */
 export const GET: RequestHandler = async (event) =>
