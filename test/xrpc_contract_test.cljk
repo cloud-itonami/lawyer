@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; test/xrpc_contract_test.cljk — do the lexicons, the deployed route, the views
 ;; and the README still agree about this app's XRPC surface?
 ;;
@@ -40,7 +40,7 @@
 ;; as a clean one and print OK (CLAUDE.md: 入力が無いとき何を返すか。pass なら
 ;; それが欠陥).
 ;;
-;; Usage:  nbb test/xrpc_contract_test.cljk
+;; Usage:  kbb --backend sci test/xrpc_contract_test.cljk
 
 (ns xrpc-contract-test
   (:require ["node:fs" :as fs]
