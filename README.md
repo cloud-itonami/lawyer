@@ -31,7 +31,7 @@ Both blocks exit 0 on node 26 / pnpm 10. `pnpm build` writes
 verifiable on the measuring workstation — the quickstart records why.
 
 ```bash
-nbb test/xrpc_contract_test.cljk   # needs nothing installed; reads the repo only
+kbb --backend sci test/xrpc_contract_test.cljk   # needs nothing installed; reads the repo only
 ```
 
 This one checks what neither `tsc` nor `svelte-check` can see: the lexicons are
