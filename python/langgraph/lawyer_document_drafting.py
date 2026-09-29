@@ -113,7 +113,7 @@ def _execute(sql_str: str, params: dict) -> bool:
 
 
 def _llm_draft(system: str, user: str, max_tokens: int = 2400) -> str:
-    """Call LLM and return draft text. Raises on failure per CLAUDE.md LLM Error rule."""
+    """Call LLM and return draft text. Raises on failure per AGENTS.md LLM Error rule."""
     try:
         from pymagatama.llm import call_tier
         result = call_tier("balanced", system=system, user=user, max_tokens=max_tokens)

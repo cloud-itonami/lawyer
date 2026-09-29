@@ -37,7 +37,7 @@
 ;;
 ;; Exit 2 exists because the cheapest way to write this check wrong is to let a
 ;; missing lexicon directory or an unreadable route fall through the same `seq`
-;; as a clean one and print OK (CLAUDE.md: 入力が無いとき何を返すか。pass なら
+;; as a clean one and print OK (AGENTS.md: 入力が無いとき何を返すか。pass なら
 ;; それが欠陥).
 ;;
 ;; Usage:  kbb --backend sci test/xrpc_contract_test.cljk
